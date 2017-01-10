@@ -1,0 +1,377 @@
+<html>
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: transparent;border-color: transparent">
+  <ul class="nav navbar-nav navbar-right">
+    <!--li>
+      <button id="Hide" style="float: left;" class="btn btn-danger navbar-btn"><i>Hide Images!!</i></button>
+    </li-->
+    <li>
+      <button id="Crazy" style="float: left;" class="btn btn-danger navbar-btn"><i>Show all Content</i></button>
+    </li>
+    <li>
+      <button id="AboutMe" style="float: left;" class="btn btn-danger navbar-btn">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <i id="AboutButtonText"> My Contact</i>
+      </button>
+    </li>
+    <li> </li>
+    <li>
+      <button id="ResumeButton" style="float: left;" class="btn btn-danger navbar-btn" onclick="window.open('https://drive.google.com/file/d/0B4cyXKqW4bliZTRTY3Y1VENSSmc/view?usp=sharing')">
+        <span class="glyphicon glyphicon-file" aria-hidden="true"></span> <i> My Resume</i>
+      </button>
+    </li>
+    <li>
+      <button id ="proj" type="button" style="float: left;animation: spin 5s infinite;" class="btn btn-danger navbar-btn" aria-label="Left Align">
+        <span id ="folder" class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> <i id="ProjText"> See Projects</i>
+      </button>
+    </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-left">
+    <li>
+
+        <%= button_to( music_path, method: :get, :style=>'font-family: Fredericka the Great, sans-serif;float: right' , form: {target: '_blank'}, :class => 'btn btn-danger navbar-btn')  do%>
+          <span class="glyphicon glyphicon-music" aria-hidden="true"><i>Try my new music app!!</i></span>
+        <%end%>
+        <!--%= link_to 'Call Action', music_path, method: :get %-->
+    </li>
+    <!--<b id="HireMe"  class="text-primary" style=" color: red;float: right; margin: .1%">Peek Inside <span class="glyphicon glyphicon-arrow-right" aria-hidden="true">  </span> <span class="glyphicon glyphicon-arrow-right" aria-hidden="true">  </span></b> -->
+  </ul>
+</nav>
+<header>
+  <style>
+    @-moz-keyframes spin {
+      0%   {color: red; background-color: black;}
+      25%  {color: blue; background-color: white;}
+      50%  {color: yellow; background-color: black;}
+      75%  {color: green; background-color: white;}
+      100% {color: red; background-color: black;}
+    }
+    @-webkit-keyframes spin {
+      0%   {color: red; background-color: black;}
+      25%  {color: blue; background-color: white;}
+      50%  {color: yellow; background-color: black;}
+      75%  {color: green; background-color: white;}
+      100% {color: red; background-color: black;}
+    }
+    @keyframes spin {
+      0%   {color: red; background-color: black;}
+      25%  {color: blue; background-color: darkgray;}
+      50%  {color: yellow; background-color: black;}
+      75%  {color: green; background-color: darkgray;}
+      100% {color: red; background-color: black;}
+    }
+    html {
+      height: 100%;
+    }
+    body {
+      min-height: 100%;
+      background-image: url(<%= asset_path 'background_spot_light_surface_texture_50715_1920x1080.jpg' %>);
+      background-size: 100%;
+    }
+    .text-primary{
+      font-family: Fredericka the Great, sans-serif;
+      font-weight: bold;
+      color: black;
+      border-color: #0000aa;
+    }
+
+    .btn-danger {
+      background-color: black;
+      padding:-1px;
+    }
+    .btn-success {
+      background-color: black;
+    }
+    .btn-info {
+      background-color: black;
+    }
+    .navbar-btn{
+      margin: 1%;
+    }
+    .form-group{
+      font-family: Fredericka the Great, sans-serif;
+      font-weight: bold;
+      color: black;
+    }
+
+    button{
+      font-family: Fredericka the Great, sans-serif;
+      font-weight: bold;
+      font-size: 120%;
+      margin: 1%;
+    }
+    p{
+      font-family: Fredericka the Great, sans-serif;
+      font-size: 110%;
+      color: black;
+    }
+  </style>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-90039872-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  <script>
+    $( document ).ready(function() {
+      $("#AboutMe").click(function(){
+        if($("#AboutButtonText").text()==" My Contact")
+        {
+          $("#row1").css("display", "none")
+          $("#row2").css("display", "none")
+          $("#rowAbout").css("display", "block")
+          $("#AboutButtonText").text(" Hide Contact")
+        }
+        else{
+          $("#row1").css("display", "block")
+          $("#row2").css("display", "none")
+          $("#rowAbout").css("display", "none")
+          $("#AboutButtonText").text(" My Contact")
+
+        }
+      })
+
+      $("#proj").click(function(){
+        var proj = $("#folder")
+        if($("#ProjText").text()==" See Projects")
+        {
+          proj.removeClass("glyphicon glyphicon-folder-close")
+          proj.addClass("glyphicon glyphicon-folder-open")
+          $("#ProjText").text(" Hide Projects")
+          $("#row1").css("display","none")
+          $("#row2").css("display","block")
+          $("#rowAbout").css("display","none")
+        }
+        else
+        {
+          proj.removeClass("glyphicon glyphicon-folder-open")
+          proj.addClass("glyphicon glyphicon-folder-close")
+          $("#ProjText").text(" See Projects")
+          $("#row1").css("display","block")
+          $("#row2").css("display","none")
+          $("#rowAbout").css("display","none")
+        }
+
+
+      })
+      $("#NextProj1").click( function(){
+        $("#row3").css("display","none")
+        $("#row4").css("display","block")
+        $("#row5").css("display","none")
+
+
+      })
+      $("#PrevProj1").click( function(){
+        $("#row4").css("display","none")
+        $("#row3").css("display","block")
+        $("#row5").css("display","none")
+
+
+      })
+      $("#NextProj2").click( function(){
+        $("#row4").css("display","none")
+        $("#row3").css("display","none")
+        $("#row5").css("display","block")
+
+
+      })
+      $("#Hide").click(function(){
+        var div = $("img")
+        var divForm = $("#FormFill")
+        var imgDiv = $("#Images")
+        div.slideToggle();
+        if($(this).text()=="Hide Images!!") {
+          $(this).text('Show Images!!')
+          divForm.addClass("col-md-10")
+          divForm.removeClass("col-md-8")
+          imgDiv.addClass("col-md-0")
+          imgDiv.removeClass("col-md-3")
+          if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+          }
+          // Let's check whether notification permissions have already been granted
+          else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            var n = new Notification("You could click on the images and redirect..", {iconUrl:'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/8/005/0b8/2a1/1e2d049.jpg'});
+            setTimeout(n.close.bind(n), 3000);
+          }
+          // Otherwise, we need to ask the user for permission
+          else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+              // If the user accepts, let's create a notification
+              if (permission === "granted") {
+                var n = new Notification("You could click on the images and redirect..", {iconUrl:'https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/8/005/0b8/2a1/1e2d049.jpg'});
+                setTimeout(n.close.bind(n), 3000);
+              }
+            });
+          }
+
+        }
+        else{
+          $(this).text("Hide Images!!")
+          imgDiv.removeClass("col-md-0")
+          imgDiv.addClass("col-md-3")
+          divForm.removeClass("col-md-10")
+          divForm.addClass("col-md-8")
+
+        }
+
+      })
+
+      $("#Crazy").click(function()
+      {
+        var div = $("div");
+        div.css("display","block")
+        $("#row4").css("display","none")
+        $("#row5").css("display","none")
+
+
+      })
+
+    });
+  </script>
+  <style>
+    .footer{
+      bottom: 0;
+      position: absolute;
+      background-color: black;
+    }
+  </style>
+
+</header>
+<body style="margin: 0%;font-weight:bold; font-family :Tangerine sans-serif;background-size:100%;">
+<div class = "container" style="display:block;margin-top: 5%">
+  <div id= "row1" class="row">
+    <div id="Images" class = "col-md-3" style="padding:0;margin-top:5%;float: left">
+      <h3 class="text-primary">LinkedIn<span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span></h3>
+      <img id = "abc" style="height: 50%; width: 50%;border-radius: 50%;" onclick="window.open('https://www.linkedin.com/in/deeplearningsamirjha')" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/8/005/0b8/2a1/1e2d049.jpg"/>
+      <br>
+      <h3 class="text-primary">Github<span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span></h3>
+      <img style="height: 50%; width: 50%;border-radius: 50%;" onclick="window.open('https://github.com/sjha4')" src="https://avatars1.githubusercontent.com/u/21146741?v=3&u=89575d401d31a39a2b6112f32f3b778a0019e8f2&s=400"/>
+      <br/>
+    </div>
+    <div id = "FormFill" class = "col-md-8" style="padding:0;margin-top:5%;float: right">
+      <%= render 'application/comment_form' %>
+
+    </div>
+  </div>
+
+  <div id= "row2" style="display:none;margin-top: 5%;height:100%">
+    <h2 class="text-primary">Projects</h2>
+    <div id="buttonDiv" style="align-items: center">
+      <button id="PrevProj1" type="button" class="btn btn-danger">
+        <b>1</b>
+      </button>
+      <button id="NextProj1" type="button" class="btn btn-danger">
+        <b>2</b>
+      </button>
+      <button id="NextProj2" type="button" class="btn btn-danger">
+        <b>3</b>
+      </button>
+      <p><br/></p>
+    </div>
+    <div id= "row3" class="row" style="display:block;">
+      <div id="Project1" class = "col-md-4">
+        <h2 class="text-primary">User-Level Threading Library</h2><p><br/></p>
+        <img onclick="window.open('https://github.com/sjha4/Custom-non-pre-emptive-user-level-threading-library')" src="http://www.thepaintedtiger.com/images/large/IMG_6225.JPG" style="height: 100%; width: 100%;border-radius: 50%;"/>
+        <br/>
+        <p align="justify"><br/>A non-preemptive user
+          level Thread library with support for Semaphores
+          and context-switching.
+        </p>
+      </div>
+      <div id="Project2" class = "col-md-4">
+        <h2 class="text-primary">Service Chaining using OpenFlow (SDN)</h2><p><br/></p>
+        <img onclick="window.open('https://docs.google.com/document/d/1dIzr8OCAM-sghQRwgewDO1gyNZxBsI4DMFC1EQTBt2M/edit?usp=sharing')" src="http://media.bestofmicro.com/F/I/460638/gallery/Software-Defined-Network_w_640.jpg" style="height: 100%; width: 100%;border-radius: 50%;"/>
+        <br/>
+        <p align="justify"><br/>Traffic flow from the user is routed to the
+          corresponding service function before being routed to the destination.
+          This completely eliminates the need for network admins to allocate resources manually.
+        </p>
+      </div>
+      <div id="Project3" class = "col-md-4">
+        <h2 class="text-primary">RAMDISK: In-memory Filesystem</h2><p><br/></p>
+        <img src="http://cdn.cultofmac.com/wp-content/uploads/2014/04/File-Size-Photo-640x480.jpg" style="height: 100%; width: 100%;border-radius: 50%;"/>
+        <br/>
+        <p align="justify"><br/>A filesystem where file/directory routines are executed in
+          user-space instead of kernel-space. Based on RAM, accessing files is almost 300% faster.
+        </p>
+      </div>
+    </div>
+    <div id= "row4" class="row" style="display:none;">
+      <div id="Project4" class = "col-md-4">
+        <h2 class="text-primary">Mu-Shell</h2><p><br/></p>
+        <img onclick="window.open('https://github.com/sjha4/Mu-Shell')" src="https://www.anthonynotes.com/wp-content/uploads/2015/06/linux_tux.jpg" style="height: 100%; width: 100%;border-radius: 50%;"/>
+
+        <br/>
+        <p align="justify"><br/>A shell : command interpreter – complete with parser,
+          I/O redirection, command execution, signal handling, job control and status reporting.
+        </p>
+      </div>
+      <div id="Project5" class = "col-md-4">
+        <h2 class="text-primary">Fend – A sandbox </h2><p><br/></p>
+        <img onclick="window.open('https://github.com/sjha4/Fend-Sandbox')" src="http://www.inspiringwallpapers.net/content/uploads/download-640x480/shield_of_captain_america_hd_wallpaper-HD.jpg" style="height: 100%; width: 100%;border-radius: 50%;"/>
+        <br/>
+        <p align="justify"><br/>A security mechanism wherein access for every program is
+          configurable at the granular level of library calls,
+          system calls, access to files stored on disc or executing any unwanted scripts.
+          The Sandbox runs as the parent thread for all executables constantly monitoring child thread memory space and registers.
+        </p>
+      </div>
+      <div id="Project6" class = "col-md-4">
+        <h2 class="text-primary">Expertiza - Open Source</h2><p><br/></p>
+        <img src="https://kassieskorner.files.wordpress.com/2015/03/tuffy.jpg?w=640" style="height: 100%; width: 100%;border-radius: 50%;"/>
+        <br/>
+        <p align="justify"><br/>	Implemented logging console for the expertiza web app developed on
+          Ruby on rails. <a href="https://www.youtube.com/watch?v=v-Q5fRYLju0">Link</a> to Youtube video explaining the project.
+          Wait till you hear my name!!
+        </p>
+      </div>
+    </div>
+    <div id= "row5" class="row" style="display:none;">
+      <div id="Project7" class = "col-md-4">
+        <h2 class="text-primary">This!!</h2><p><br/></p>
+        <img onclick="window.open('https://github.com/sjha4/My-Website-On-Rails')" src="http://bitcoinez.com/wp-content/uploads/2016/10/news.bitcoin.comwp-contentuploads201610heroku-og-cad174838a49b266550809e29026ec9bc18e056dae8f9cf523ea4237379691f9-640x480-884d48fef2f8d71a6f91861b6f02ff263f508095-640x480.jpg" style="height: 100%; width: 100%;border-radius: 50%;"/>
+        <br/>
+        <p align="justify"><br/>
+          Because Rails on Heroku is fast!!
+        </p>
+      </div>
+      <div id="Project8" class = "col-md-4">
+        <h2 class="text-primary">My Music App</h2><p><br/></p>
+        <img onclick="window.open('https://samirjha.herokuapp.com/music?')" src="http://zdnet3.cbsistatic.com/hub/i/r/2016/09/01/7091ca46-3139-4874-9840-33278c3174f6/thumbnail/770x578/0a42b2388eddc82d3ffe1a72a16aa0e1/last-fm-hero.jpg" style="height: 100%; width: 100%;border-radius: 50%;"/>
+        <br/>
+        <p align="justify"><br/>
+          Top 50 chartbusters from your country!! Data synced from <a href="https://www.last.fm"> last.fm </a>!
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id= "rowAbout" class="row" style="display:none;margin-top: inherit;height:100%">
+    <div id="colAbout" style="overflow: visible" class = "col-md-4">
+      <h2 class="text-primary">Contact</h2>
+      <p align="justify"><br/>
+        Phone Number: (+1)-919-523-8372
+        <br/>Email: <b><a href="mailto:samirjha1525@gmail.com">samirjha1525@gmail.com</a></b><br>
+        <br/><h2 class="text-primary"> ABOUT ME! </h2><br/>
+      </p>
+      <p align="justify">I am pursuing my masters in computer science from North Carolina State University.
+      Too much needs to go here...Let's just say this div is under construction.
+      For now, watch my first trip to <b class="text-primary">California!!</b>
+      <br/>
+      <br/>
+      And yes! You can always mail me @ <b style="font-weight: bold">samirjha1525@gmail.com</b>
+      </p>
+    </div>
+    <br/>
+    <div id="colFb" class = "col-md-7">
+      <iframe width="560" height="315" style="border-style:dashed; border-width: thick;border-color: black" src="https://www.youtube.com/embed/sKgMWFx84h0" frameborder="0" allowfullscreen></iframe>
+      <!--img id = "abc" style="height: 100%; width: 100%;border-radius: 50%;" onclick="window.open('https://www.facebook.com/You.just.stalked.Samir')" src="https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-9/11742904_10206038775141339_8456099831047289091_n.jpg?oh=b82be752d86bdbf6c7e577a8921b31cc&oe=58FB58F9"/-->
+      <br/>
+    </div>
+  </div>
+</div>
+</body>
+</html>
